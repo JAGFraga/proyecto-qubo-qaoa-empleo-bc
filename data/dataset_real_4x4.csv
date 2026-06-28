@@ -1,1 +1,17 @@
-
+a_id,a_nombre,a_sinco,a_wage,a_growth,b_id,b_nombre,b_sinco,b_wage,b_growth,score
+A1,Albañiles y Mamposteros,7121,7435.9,-12457,B1,Empleados de Ventas,4211,4310.62,17177,0.213
+A1,Albañiles y Mamposteros,7121,7435.9,-12457,B2,Comerciantes en Establecimientos,4111,4666.57,8395,0.309
+A1,Albañiles y Mamposteros,7121,7435.9,-12457,B3,Ayudantes en Preparacion de Alimentos,9411,4600.36,7069,0.493
+A1,Albañiles y Mamposteros,7121,7435.9,-12457,B4,Supervisores de Maquinaria Industrial,8101,6618.55,4204,0.419
+A2,Vigilantes y Guardias,5313,5949.27,-8373,B1,Empleados de Ventas,4211,4310.62,17177,0.544
+A2,Vigilantes y Guardias,5313,5949.27,-8373,B2,Comerciantes en Establecimientos,4111,4666.57,8395,0.585
+A2,Vigilantes y Guardias,5313,5949.27,-8373,B3,Ayudantes en Preparacion de Alimentos,9411,4600.36,7069,0.663
+A2,Vigilantes y Guardias,5313,5949.27,-8373,B4,Supervisores de Maquinaria Industrial,8101,6618.55,4204,0.589
+A3,Fonderos y Comerciantes de Comida,5112,4135.52,-8143,B1,Empleados de Ventas,4211,4310.62,17177,0.674
+A3,Fonderos y Comerciantes de Comida,5112,4135.52,-8143,B2,Comerciantes en Establecimientos,4111,4666.57,8395,0.716
+A3,Fonderos y Comerciantes de Comida,5112,4135.52,-8143,B3,Ayudantes en Preparacion de Alimentos,9411,4600.36,7069,0.633
+A3,Fonderos y Comerciantes de Comida,5112,4135.52,-8143,B4,Supervisores de Maquinaria Industrial,8101,6618.55,4204,0.506
+A4,Vendedores por Catalogo,4224,1924.62,-5560,B1,Empleados de Ventas,4211,4310.62,17177,0.822
+A4,Vendedores por Catalogo,4224,1924.62,-5560,B2,Comerciantes en Establecimientos,4111,4666.57,8395,0.757
+A4,Vendedores por Catalogo,4224,1924.62,-5560,B3,Ayudantes en Preparacion de Alimentos,9411,4600.36,7069,0.568
+A4,Vendedores por Catalogo,4224,1924.62,-5560,B4,Supervisores de Maquinaria Industrial,8101,6618.55,4204,0.547
