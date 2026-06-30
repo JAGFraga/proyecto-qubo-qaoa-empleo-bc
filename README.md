@@ -182,11 +182,11 @@ La distancia entre perfiles se calculó mediante distancia euclidiana sobre los 
 ## Matriz S 4×4
 
 ```text
-         B1      B2      B3      B4
-A1      7.5	   -3.0	   -0.5	    3.0
-A2     -3.0	    7.5	   -0.5	    3.0
-A3     -0.5	   -0.5	    3.5	   -1.0
-A4      3.0	    3.0	   -1.0	    3.5
+          B1       B2         B3         B4
+A1      0.213      0.309      0.493      0.419
+A2      0.544      0.585      0.663      0.589
+A3      0.674      0.716      0.633      0.506
+A4      0.822      0.757      0.568      0.547
 
 ```
 
@@ -250,6 +250,12 @@ Score óptimo:
 ```
 
 La solución cumple completamente todas las restricciones del matching bipartito.
+
+
+---
+
+### Interpretación de los resultados
+La mejor asignación encontrada sugiere que los vendedores por catálogo pueden integrarse fácilmente a empleos de ventas, mientras que los fonderos y comerciantes de comida presentan alta compatibilidad con actividades comerciales en establecimientos. Los vigilantes muestran afinidad con labores de apoyo en la preparación de alimentos, y los albañiles con puestos de supervisión industrial. Estas asignaciones maximizan el score global del modelo y cumplen todas las restricciones del emparejamiento uno a uno. Sin embargo, los resultados tienen un propósito únicamente académico y demostrativo, por lo que no deben interpretarse como recomendaciones reales de política pública o empleo.
 
 ---
 
