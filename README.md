@@ -350,3 +350,217 @@ Runtime → Run all
 3. Esperar la instalación automática de dependencias y la ejecución completa del notebook.
 
 4. Verificar que los resultados obtenidos coincidan con los reportados en este README.
+
+# Anexo A. Justificación de perfiles heurísticos
+## Justificación de los perfiles heurísticos
+
+Los atributos **Físico, Social y Técnico** fueron definidos en una escala normalizada de 0 a 1 mediante juicio experto, considerando las actividades predominantes de cada ocupación. Estos atributos permiten estimar la similitud funcional entre perfiles laborales y construir una función de afinidad para el problema de matching bipartito.
+
+### A1: Albañiles, Mamposteros y Afines (7121)
+
+* **Físico = 1.0:** requiere trabajo manual intenso y esfuerzo corporal constante.
+* **Social = 0.1:** la interacción con clientes o público es limitada.
+* **Técnico = 0.4:** demanda conocimientos prácticos sobre materiales, herramientas y procesos constructivos.
+
+### A2: Vigilantes y Guardias en Establecimientos (5313)
+
+* **Físico = 0.6:** implica recorridos, vigilancia y permanencia prolongada de pie.
+* **Social = 0.5:** existe interacción moderada con clientes y personal.
+* **Técnico = 0.2:** las habilidades técnicas requeridas son relativamente básicas.
+
+### A3: Fonderos, Vendedores y Comerciantes de Comida (5112)
+
+* **Físico = 0.7:** el trabajo involucra movilidad y actividades manuales continuas.
+* **Social = 0.9:** la atención al cliente constituye una parte esencial de la ocupación.
+* **Técnico = 0.1:** las tareas técnicas especializadas son limitadas.
+
+### A4: Vendedores por Catálogo (4224)
+
+* **Físico = 0.2:** el esfuerzo físico es reducido.
+* **Social = 1.0:** la principal competencia es la interacción y negociación con clientes.
+* **Técnico = 0.1:** no requiere conocimientos técnicos especializados.
+
+### B1: Empleados de Ventas, Despachadores y Dependientes (4211)
+
+* **Físico = 0.4:** requiere movilidad moderada dentro de establecimientos comerciales.
+* **Social = 1.0:** la atención al cliente es la actividad principal.
+* **Técnico = 0.2:** demanda habilidades operativas básicas.
+
+### B2: Comerciantes en Establecimientos (4111)
+
+* **Físico = 0.5:** combina actividades administrativas y operativas.
+* **Social = 0.9:** existe una alta interacción con clientes y proveedores.
+* **Técnico = 0.3:** requiere conocimientos básicos de administración e inventarios.
+
+### B3: Ayudantes en la Preparación de Alimentos (9411)
+
+* **Físico = 0.8:** implica actividades manuales y esfuerzo físico continuo.
+* **Social = 0.4:** la interacción con el público es menor que en ocupaciones comerciales.
+* **Técnico = 0.2:** requiere habilidades operativas básicas relacionadas con alimentos.
+
+### B4: Supervisores de Operadores de Maquinaria Industrial (8101)
+
+* **Físico = 0.5:** combina supervisión con actividades operativas.
+* **Social = 0.4:** existe interacción con equipos de trabajo, pero no con clientes.
+* **Técnico = 0.9:** demanda conocimientos avanzados sobre maquinaria y procesos industriales.
+
+---
+
+# Anexo B. Ejemplos de cálculo de la matriz de afinidad
+
+
+## Matriz de afinidad utilizada
+
+La matriz de afinidad final obtenida para el problema fue:
+
+|        |    B1 |    B2 |    B3 |    B4 |
+| ------ | ----: | ----: | ----: | ----: |
+| **A1** | 0.213 | 0.309 | 0.493 | 0.419 |
+| **A2** | 0.544 | 0.585 | 0.663 | 0.589 |
+| **A3** | 0.674 | 0.716 | 0.633 | 0.506 |
+| **A4** | 0.822 | 0.757 | 0.568 | 0.547 |
+
+La función de afinidad empleada fue:
+
+[
+S_{ij}=0.8(1-D_{ij})+0.2G_{ij},
+]
+
+donde:
+
+* (D_{ij}) es la distancia Manhattan normalizada entre los perfiles ocupacionales.
+* (G_{ij}) representa el beneficio salarial normalizado.
+* El 80% del peso corresponde a la similitud del perfil laboral y el 20% al beneficio económico esperado.
+
+---
+
+## Ejemplo 1: A4 → B1 (Vendedores por Catálogo → Empleados de Ventas)
+
+**Perfiles:**
+
+* A4 = (0.2, 1.0, 0.1)
+* B1 = (0.4, 1.0, 0.2)
+
+Distancia Manhattan normalizada:
+
+[
+D=
+\frac{|0.2-0.4|+|1.0-1.0|+|0.1-0.2|}{3}
+=======================================
+
+# \frac{0.3}{3}
+
+0.10
+]
+
+Similitud:
+
+[
+1-D=0.90
+]
+
+Beneficio salarial normalizado:
+
+[
+G \approx 0.508
+]
+
+Score final:
+
+[
+S=
+0.8(0.90)+0.2(0.508)
+\approx
+0.822
+]
+
+Este es el valor más alto de la matriz y representa una transición laboral altamente compatible, ya que ambas ocupaciones requieren una intensa interacción social y un bajo nivel de especialización técnica.
+
+---
+
+## Ejemplo 2: A3 → B2 (Fonderos → Comerciantes en Establecimientos)
+
+**Perfiles:**
+
+* A3 = (0.7, 0.9, 0.1)
+* B2 = (0.5, 0.9, 0.3)
+
+Distancia:
+
+[
+D=
+\frac{|0.7-0.5|+|0.9-0.9|+|0.1-0.3|}{3}
+=======================================
+
+# \frac{0.4}{3}
+
+0.133
+]
+
+Similitud:
+
+[
+1-D=0.867
+]
+
+Beneficio salarial normalizado:
+
+[
+G \approx 0.113
+]
+
+Score final:
+
+[
+S=
+0.8(0.867)+0.2(0.113)
+\approx
+0.716
+]
+
+La elevada similitud en competencias comerciales y de atención al cliente explica que esta transición forme parte de la solución óptima global.
+
+---
+
+## Ejemplo 3: A1 → B4 (Albañiles → Supervisores de Maquinaria Industrial)
+
+**Perfiles:**
+
+* A1 = (1.0, 0.1, 0.4)
+* B4 = (0.5, 0.4, 0.9)
+
+Distancia:
+
+[
+D=
+\frac{|1.0-0.5|+|0.1-0.4|+|0.4-0.9|}{3}
+=======================================
+
+# \frac{1.3}{3}
+
+0.433
+]
+
+Similitud:
+
+[
+1-D=0.567
+]
+
+Beneficio salarial normalizado:
+
+[
+G \approx -0.174
+]
+
+Score final:
+
+[
+S=
+0.8(0.567)+0.2(-0.174)
+\approx
+0.419
+]
+
+Aunque existe una disminución salarial respecto a la ocupación original, la similitud en las competencias físicas y la posibilidad de reconversión hacia el sector industrial permiten obtener una afinidad suficiente para formar parte del matching óptimo global.
+
