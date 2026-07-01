@@ -351,10 +351,13 @@ Runtime → Run all
 
 4. Verificar que los resultados obtenidos coincidan con los reportados en este README.
 
-# Anexo A. Justificación de perfiles heurísticos
-## Justificación de los perfiles heurísticos
+---
 
-Los atributos **Físico, Social y Técnico** fueron definidos en una escala normalizada de 0 a 1 mediante juicio experto, considerando las actividades predominantes de cada ocupación. Estos atributos permiten estimar la similitud funcional entre perfiles laborales y construir una función de afinidad para el problema de matching bipartito.
+# Anexo A. Justificación de los perfiles heurísticos
+
+Los atributos **Físico, Social y Técnico** fueron definidos en una escala normalizada de 0 a 1 mediante juicio experto, considerando las actividades predominantes de cada ocupación. Estos atributos permiten estimar la similitud funcional entre perfiles laborales y construir la función de afinidad utilizada en el problema de matching bipartito.
+
+## Conjunto A: Sectores en crisis
 
 ### A1: Albañiles, Mamposteros y Afines (7121)
 
@@ -380,7 +383,11 @@ Los atributos **Físico, Social y Técnico** fueron definidos en una escala norm
 * **Social = 1.0:** la principal competencia es la interacción y negociación con clientes.
 * **Técnico = 0.1:** no requiere conocimientos técnicos especializados.
 
-### B1: Empleados de Ventas, Despachadores y Dependientes (4211)
+---
+
+## Conjunto B: Sectores en expansión
+
+### B1: Empleados de Ventas, Despachadores y Dependientes en Comercios (4211)
 
 * **Físico = 0.4:** requiere movilidad moderada dentro de establecimientos comerciales.
 * **Social = 1.0:** la atención al cliente es la actividad principal.
@@ -404,14 +411,13 @@ Los atributos **Físico, Social y Técnico** fueron definidos en una escala norm
 * **Social = 0.4:** existe interacción con equipos de trabajo, pero no con clientes.
 * **Técnico = 0.9:** demanda conocimientos avanzados sobre maquinaria y procesos industriales.
 
+Los atributos anteriores constituyen una simplificación metodológica con fines educativos y de investigación. No representan mediciones oficiales ni evaluaciones laborales estandarizadas.
+
 ---
 
 # Anexo B. Ejemplos de cálculo de la matriz de afinidad
 
-
-## Matriz de afinidad utilizada
-
-La matriz de afinidad final obtenida para el problema fue:
+La matriz de afinidad utilizada en el proyecto fue la siguiente:
 
 |        |    B1 |    B2 |    B3 |    B4 |
 | ------ | ----: | ----: | ----: | ----: |
@@ -422,14 +428,14 @@ La matriz de afinidad final obtenida para el problema fue:
 
 La función de afinidad empleada fue:
 
-[
-S_{ij}=0.8(1-D_{ij})+0.2G_{ij},
-]
+```text
+S_ij = 0.8 (1 - D_ij) + 0.2 G_ij
+```
 
 donde:
 
-* (D_{ij}) es la distancia Manhattan normalizada entre los perfiles ocupacionales.
-* (G_{ij}) representa el beneficio salarial normalizado.
+* **D_ij** es la distancia Manhattan normalizada entre perfiles ocupacionales.
+* **G_ij** representa el beneficio salarial normalizado.
 * El 80% del peso corresponde a la similitud del perfil laboral y el 20% al beneficio económico esperado.
 
 ---
@@ -441,40 +447,34 @@ donde:
 * A4 = (0.2, 1.0, 0.1)
 * B1 = (0.4, 1.0, 0.2)
 
-Distancia Manhattan normalizada:
+Distancia:
 
-[
-D=
-\frac{|0.2-0.4|+|1.0-1.0|+|0.1-0.2|}{3}
-=======================================
-
-# \frac{0.3}{3}
-
-0.10
-]
+```text
+D = (|0.2-0.4| + |1.0-1.0| + |0.1-0.2|)/3
+  = 0.3/3
+  = 0.10
+```
 
 Similitud:
 
-[
-1-D=0.90
-]
+```text
+1 - D = 0.90
+```
 
 Beneficio salarial normalizado:
 
-[
-G \approx 0.508
-]
+```text
+G ≈ 0.508
+```
 
 Score final:
 
-[
-S=
-0.8(0.90)+0.2(0.508)
-\approx
-0.822
-]
+```text
+S = 0.8(0.90) + 0.2(0.508)
+  ≈ 0.822
+```
 
-Este es el valor más alto de la matriz y representa una transición laboral altamente compatible, ya que ambas ocupaciones requieren una intensa interacción social y un bajo nivel de especialización técnica.
+Este es el mayor valor de la matriz y representa una transición laboral altamente compatible, ya que ambas ocupaciones requieren una intensa interacción social y un bajo nivel de especialización técnica.
 
 ---
 
@@ -487,36 +487,30 @@ Este es el valor más alto de la matriz y representa una transición laboral alt
 
 Distancia:
 
-[
-D=
-\frac{|0.7-0.5|+|0.9-0.9|+|0.1-0.3|}{3}
-=======================================
-
-# \frac{0.4}{3}
-
-0.133
-]
+```text
+D = (|0.7-0.5| + |0.9-0.9| + |0.1-0.3|)/3
+  = 0.4/3
+  = 0.133
+```
 
 Similitud:
 
-[
-1-D=0.867
-]
+```text
+1 - D = 0.867
+```
 
 Beneficio salarial normalizado:
 
-[
-G \approx 0.113
-]
+```text
+G ≈ 0.113
+```
 
 Score final:
 
-[
-S=
-0.8(0.867)+0.2(0.113)
-\approx
-0.716
-]
+```text
+S = 0.8(0.867) + 0.2(0.113)
+  ≈ 0.716
+```
 
 La elevada similitud en competencias comerciales y de atención al cliente explica que esta transición forme parte de la solución óptima global.
 
@@ -531,36 +525,32 @@ La elevada similitud en competencias comerciales y de atención al cliente expli
 
 Distancia:
 
-[
-D=
-\frac{|1.0-0.5|+|0.1-0.4|+|0.4-0.9|}{3}
-=======================================
-
-# \frac{1.3}{3}
-
-0.433
-]
+```text
+D = (|1.0-0.5| + |0.1-0.4| + |0.4-0.9|)/3
+  = 1.3/3
+  = 0.433
+```
 
 Similitud:
 
-[
-1-D=0.567
-]
+```text
+1 - D = 0.567
+```
 
 Beneficio salarial normalizado:
 
-[
-G \approx -0.174
-]
+```text
+G ≈ -0.174
+```
 
 Score final:
 
-[
-S=
-0.8(0.567)+0.2(-0.174)
-\approx
-0.419
-]
+```text
+S = 0.8(0.567) + 0.2(-0.174)
+  ≈ 0.419
+```
 
 Aunque existe una disminución salarial respecto a la ocupación original, la similitud en las competencias físicas y la posibilidad de reconversión hacia el sector industrial permiten obtener una afinidad suficiente para formar parte del matching óptimo global.
+
+
 
